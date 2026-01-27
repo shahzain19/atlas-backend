@@ -283,6 +283,18 @@ router.post('/seed', async (req, res) => {
                 body: 'Ideas are viruses. Competing narratives are fighting for limited attention span. Conscious consumption is required.',
                 category: 'culture',
                 status: 'published'
+            },
+            {
+                title: 'Systemic Governance',
+                body: 'Power is not given, it is taken. Understanding the architecture of governance is essential for sovereignty.',
+                category: 'politics',
+                status: 'published'
+            },
+            {
+                title: 'Supply Chain Fragility',
+                body: 'Complexity is a feature, not a bug, until it collapses. Redundancy is the only insurance in a globalized world.',
+                category: 'logistics',
+                status: 'published'
             }
         ];
 
