@@ -319,6 +319,30 @@ router.post('/seed', async (req, res) => {
                 body: 'History does not repeat, but it rhymes. Identifying the cycles of expansion and contraction is key to long-term survival.',
                 category: 'history',
                 status: 'published'
+            },
+            {
+                title: 'Axiomatic Reasoning',
+                body: 'Philosophy is the art of asking the right questions. Reasoning from axioms ensures that your worldview is built on a solid foundation.',
+                category: 'philosophy',
+                status: 'published'
+            },
+            {
+                title: 'Jurisdictional Resilience',
+                body: 'The law is a code that governs the physical world. Sovereignty requires understanding the rules of different jurisdictions.',
+                category: 'law',
+                status: 'published'
+            },
+            {
+                title: 'Cognitive Architecture',
+                body: 'Your mind is the ultimate OS. Understanding cognitive biases and behavioral patterns is essential for clear thinking.',
+                category: 'psychology',
+                status: 'published'
+            },
+            {
+                title: 'Ecological Assets',
+                body: 'The environment is the base layer of all value. Managing natural resources sustainably is a prerequisite for long-term civilization.',
+                category: 'environment',
+                status: 'published'
             }
         ];
 
