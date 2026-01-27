@@ -2,7 +2,7 @@ import express from 'express';
 import { supabase as db } from '../db.js';
 
 const router = express.Router();
-const DOMAIN = 'https://atlas.com'; // In production, this would be env var
+const DOMAIN = 'https://atlas-frontend-omega.vercel.app';
 
 /**
  * GET /robots.txt

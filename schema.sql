@@ -6,9 +6,9 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- 1. Tables Creation
 
--- Users profile table (Extends Supabase Auth)
+-- Users profile table
 CREATE TABLE IF NOT EXISTS public.profiles (
-    id UUID REFERENCES auth.users ON DELETE CASCADE PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     username TEXT UNIQUE NOT NULL,
     email TEXT UNIQUE NOT NULL,
     password_hash TEXT, -- For custom login logic
