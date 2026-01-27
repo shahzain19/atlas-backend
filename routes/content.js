@@ -343,6 +343,30 @@ router.post('/seed', async (req, res) => {
                 body: 'The environment is the base layer of all value. Managing natural resources sustainably is a prerequisite for long-term civilization.',
                 category: 'environment',
                 status: 'published'
+            },
+            {
+                title: 'Optimal Strategy',
+                body: 'Strategy is the art of allocating limited resources against an intelligent adversary. Game theory is the foundation.',
+                category: 'strategy',
+                status: 'published'
+            },
+            {
+                title: 'Economic Incentives',
+                body: 'Show me the incentive and I will show you the outcome. Economics is the study of how people respond to incentives.',
+                category: 'economics',
+                status: 'published'
+            },
+            {
+                title: 'Global Statics',
+                body: 'Geopolitics is the intersection of geography and power. Control over chokepoints and resources dictates state behavior.',
+                category: 'geopolitics',
+                status: 'published'
+            },
+            {
+                title: 'Systemic Build',
+                body: 'Engineering is the application of physics to solve human problems. Building resilient infrastructure is the key to sovereignty.',
+                category: 'engineering',
+                status: 'published'
             }
         ];
 
