@@ -367,6 +367,36 @@ router.post('/seed', async (req, res) => {
                 body: 'Engineering is the application of physics to solve human problems. Building resilient infrastructure is the key to sovereignty.',
                 category: 'engineering',
                 status: 'published'
+            },
+            {
+                title: 'Basal Layer',
+                body: 'Agriculture is the fundamental level of civilization. Securing nutrient-dense food sources is a prerequisite for cognitive performance.',
+                category: 'agriculture',
+                status: 'published'
+            },
+            {
+                title: 'Spatial Sovereignty',
+                body: 'Architecture is the design of the physical habitat. Creating spaces that foster focus and resilience is essential for long-term health.',
+                category: 'architecture',
+                status: 'published'
+            },
+            {
+                title: 'Information Warfare',
+                body: 'Media is the vector for narrative control. Developing deep filter protocols is necessary to distinguish signal from noise.',
+                category: 'media',
+                status: 'published'
+            },
+            {
+                title: 'Knowledge Transfer',
+                body: 'Education is the process of acquiring systemic intelligence. Moving beyond institutional schooling toward specialized mastery.',
+                category: 'education',
+                status: 'published'
+            },
+            {
+                title: 'Narrative Control',
+                body: 'Culture is the summation of shared stories. Analyzing and shaping these narratives dictates the trajectory of civilization.',
+                category: 'culture',
+                status: 'published'
             }
         ];
 
