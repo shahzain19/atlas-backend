@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 const allowedOrigins = process.env.CORS_ORIGIN
     ? process.env.CORS_ORIGIN.split(',')
-    : ['http://localhost:5173'];
+    : ['https://atlas-frontend-omega.vercel.app'];
 
 app.use(cors({
     origin: (origin, callback) => {
