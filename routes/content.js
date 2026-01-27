@@ -295,6 +295,30 @@ router.post('/seed', async (req, res) => {
                 body: 'Complexity is a feature, not a bug, until it collapses. Redundancy is the only insurance in a globalized world.',
                 category: 'logistics',
                 status: 'published'
+            },
+            {
+                title: 'Digital Perimeter',
+                body: 'Encryption is the ultimate leverage for the individual. Protecting your digital footprint is the first step toward sovereignty.',
+                category: 'security',
+                status: 'published'
+            },
+            {
+                title: 'Thermodynamic Reality',
+                body: 'Energy is the master resource. Civilization is a function of our ability to capture and utilize energy efficiently.',
+                category: 'energy',
+                status: 'published'
+            },
+            {
+                title: 'First Principles',
+                body: 'Reasoning from first principles allows you to solve complex problems by breaking them down into fundamental truths.',
+                category: 'science',
+                status: 'published'
+            },
+            {
+                title: 'Recurring Cycles',
+                body: 'History does not repeat, but it rhymes. Identifying the cycles of expansion and contraction is key to long-term survival.',
+                category: 'history',
+                status: 'published'
             }
         ];
 
