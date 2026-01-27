@@ -245,30 +245,49 @@ router.post('/:id/tags', authenticateToken, requireRole('admin', 'contributor'),
 /**
  * Seed data route (dev only)
  */
-router.post('/seed', (req, res) => {
+router.post('/seed', async (req, res) => {
     try {
-        const seed = db.transaction((items) => {
-            const stmt = db.prepare('INSERT INTO content (title, body, category) VALUES (?, ?, ?)');
-            for (const item of items) stmt.run(item.title, item.body, item.category);
-        });
-
-        seed([
+        const seedData = [
             {
                 title: 'The Fiat Illusion',
                 body: 'Money is not wealth. Money is a claim on wealth. When currency is printed without production, the claim is diluted.',
-                category: 'money'
+                category: 'money',
+                status: 'published'
             },
             {
                 title: 'Leverage Explained',
                 body: 'Leverage is the ratio of output to input. Code and Media are the new forms of leverage because the marginal cost of replication is zero.',
-                category: 'business'
+                category: 'business',
+                status: 'published'
             },
             {
-                title: 'Taxation as a System',
-                body: 'Understanding tax codes explains 80% of corporate behavior. It is an instruction manual for incentives.',
-                category: 'business'
+                title: 'Strategic Foresight',
+                body: 'Intelligence is not about predicting the future, but about being prepared for multiple futures. Signal detection is the first step.',
+                category: 'intelligence',
+                status: 'published'
+            },
+            {
+                title: 'Base Protocols',
+                body: 'In the digital age, those who control the protocols control the flow of information. Decentralization is the only hedge.',
+                category: 'technology',
+                status: 'published'
+            },
+            {
+                title: 'Biological Agency',
+                body: 'Your body is the ultimate piece of hardware. Optimization starts with metabolic health and sleep architecture.',
+                category: 'health',
+                status: 'published'
+            },
+            {
+                title: 'Meme Warfare',
+                body: 'Ideas are viruses. Competing narratives are fighting for limited attention span. Conscious consumption is required.',
+                category: 'culture',
+                status: 'published'
             }
-        ]);
+        ];
+
+        const { error } = await db.from('content').insert(seedData);
+        if (error) throw error;
 
         res.json({ message: 'Database seeded successfully' });
     } catch (error) {
