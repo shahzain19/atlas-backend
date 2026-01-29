@@ -8,6 +8,7 @@ import searchRoutes from './routes/search.js';
 import userRoutes from './routes/users.js';
 import seoRoutes from './routes/seo.js';
 import apiKeyRoutes from './routes/api_keys.js';
+import subscribeRoutes from './routes/subscribe.js';
 import { supabase as db } from './db.js';
 
 // Load environment variables
@@ -61,6 +62,7 @@ app.use('/api/tags', tagRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/keys', apiKeyRoutes);
+app.use('/api/subscribe', subscribeRoutes);
 
 // 404 handler
 app.use((req, res) => {

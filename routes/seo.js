@@ -117,31 +117,34 @@ Host: ${DOMAIN}
 
 /**
  * GET /sitemap.xml
- * Main sitemap index
+ * Combined sitemap (homepage + categories + articles)
  */
 router.get('/sitemap.xml', async (req, res) => {
     try {
         const now = new Date().toISOString();
 
-        const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <sitemap>
-        <loc>${DOMAIN}/sitemap-main.xml</loc>
-        <lastmod>${now}</lastmod>
-    </sitemap>
-    <sitemap>
-        <loc>${DOMAIN}/sitemap-categories.xml</loc>
-        <lastmod>${now}</lastmod>
-    </sitemap>
-    <sitemap>
-        <loc>${DOMAIN}/sitemap-articles.xml</loc>
-        <lastmod>${now}</lastmod>
-    </sitemap>
-</sitemapindex>`;
+        // Fetch published articles to include
+        const { data: articles, error } = await db
+            .from('content')
+            .select('id, title, category, updated_at, created_at')
+            .eq('status', 'published')
+            .order('updated_at', { ascending: false })
+            .limit(1000);
+
+        if (error) throw error;
+
+        const articleUrls = (articles || []).map(article => {
+            const lastmod = new Date(article.updated_at || article.created_at).toISOString();
+            return `\n    <url>\n        <loc>${DOMAIN}/read/${article.id}</loc>\n        <lastmod>${lastmod}</lastmod>\n        <changefreq>monthly</changefreq>\n        <priority>0.7</priority>\n    </url>`;
+        }).join('');
+
+        const categoryUrls = CATEGORIES.map(cat => `\n    <url>\n        <loc>${DOMAIN}/${cat.slug}</loc>\n        <lastmod>${now}</lastmod>\n        <changefreq>daily</changefreq>\n        <priority>${cat.priority}</priority>\n    </url>`).join('');
+
+        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n        xmlns:xhtml="http://www.w3.org/1999/xhtml"\n        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n    <!-- Homepage -->\n    <url>\n        <loc>${DOMAIN}/</loc>\n        <lastmod>${now}</lastmod>\n        <changefreq>daily</changefreq>\n        <priority>1.0</priority>\n        <image:image>\n            <image:loc>${DOMAIN}/og-image.png</image:loc>\n            <image:title>Atlas - Deep Research and Analysis Platform</image:title>\n        </image:image>\n    </url>\n    \n    <!-- Search Page -->\n    <url>\n        <loc>${DOMAIN}/search</loc>\n        <lastmod>${now}</lastmod>\n        <changefreq>weekly</changefreq>\n        <priority>0.6</priority>\n    </url>\n    <!-- Categories -->${categoryUrls}\n    <!-- Articles -->${articleUrls}\n</urlset>`;
 
         res.type('application/xml').send(xml);
     } catch (error) {
-        console.error('Sitemap index error:', error);
+        console.error('Sitemap error:', error);
         res.status(500).send('Error generating sitemap');
     }
 });
